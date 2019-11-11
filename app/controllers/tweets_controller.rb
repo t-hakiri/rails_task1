@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+	before_action :set_tweet, only: [:edit, :update, :destroy]
+
 	def toppage
  	end
 
@@ -24,11 +26,12 @@ class TweetsController < ApplicationController
   	end
 
   	def edit
+  		@tweet = Tweet.find(params[:id])
   	end
 
   	def update
   		if @tweet.update(tweet_params)
-  			redirect_to tweet_path, notice: "編集しました。"
+  			redirect_to tweets_path, notice: "編集しました。"
   		end
   	end
 
@@ -37,15 +40,18 @@ class TweetsController < ApplicationController
   		redirect_to tweets_path, notice: "削除しました。"
   	end
 
- 	def show
-  	end
-
  	def confirm
+ 		@tweet = Tweet.new(tweet_params)
+ 		render :new if @tweet.invalid?
  	end
 
- private 
-  	def tweet_params
-  		params.require(:tweet).permit(:content)
-  	end
+ 	private 
+  		def tweet_params
+  			params.require(:tweet).permit(:content)
+  		end
+
+  		def set_tweet
+  			@tweet = Tweet.find(params[:id])
+  		end
 
 end
