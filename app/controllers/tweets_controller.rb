@@ -4,26 +4,26 @@ class TweetsController < ApplicationController
 	def toppage
  	end
 
-  	def index
-  		@tweets = Tweet.all
-  	end
+  def index
+		@tweets = Tweet.all
+ 	end
 
-  	def new
-  		@tweet = Tweet.new
-  	end
+ 	def new
+  	@tweet = Tweet.new
+  end
 	
 	def create
-  		@tweet = Tweet.new(tweet_params)
-  		if params[:back]
-  			render :new
+  	@tweet = Tweet.new(tweet_params)
+  	if params[:back]
+  		render :new
+  	else
+  		if @tweet.save
+  			redirect_to tweets_path, notice: "tweetしました。"
   		else
-  			if @tweet.save
-  				redirect_to tweets_path, notice: "tweetしました。"
-  			else
-  				render :new
-  			end
+  			render :new
   		end
   	end
+  end
 
   	def edit
   		@tweet = Tweet.find(params[:id])
@@ -35,10 +35,10 @@ class TweetsController < ApplicationController
   		end
   	end
 
-  	def destroy
-  		@tweet.destroy
-  		redirect_to tweets_path, notice: "削除しました。"
-  	end
+	def destroy
+  	@tweet.destroy
+  	redirect_to tweets_path, notice: "削除しました。"
+	end
 
  	def confirm
  		@tweet = Tweet.new(tweet_params)
@@ -46,12 +46,12 @@ class TweetsController < ApplicationController
  	end
 
  	private 
-  		def tweet_params
-  			params.require(:tweet).permit(:content)
-  		end
+  def tweet_params
+    params.require(:tweet).permit(:content)
+  end
 
-  		def set_tweet
-  			@tweet = Tweet.find(params[:id])
-  		end
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
 
 end

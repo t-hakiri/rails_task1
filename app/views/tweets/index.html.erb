@@ -1,27 +1,19 @@
-
 <div class="top_manu">
-<h1>Tweetクローン</h1>
-
-<p><%= notice %></p>
-<table>
-	<tr>
-		<th>Tweet一覧</th>
-	</tr>
-
-	<% @tweets.each do |tweet| %>
+	<h1>Tweetクローン</h1>
+	<p><%= notice %></p>
+	<table>
 		<tr>
-			<td><%= tweet.content %></td>
-			<td>
-			<%= link_to "削除する", tweet_path(tweet.id), method: :delete ,data: { confirm: "本当に削除してよろしいですか？" } %>
-			</td>
-			<td>
-			<%= link_to "編集する", edit_tweet_path(tweet.id) %>
-			</td> 
+			<th>Tweet一覧</th>
 		</tr>
-	<% end %>
-	<%= link_to("トップページ", root_path) %>
-</table>
 
-
+		<% @tweets.each do |tweet| %>
+			<tr>
+				<td><%= tweet.content %></td>
+			  <td><%= link_to "削除する", tweet_path(tweet.id), method: :delete ,data: { confirm: "本当に削除してよろしいですか？" } %></td>
+				<td><%= link_to "編集する", edit_tweet_path(tweet.id) %></td> 
+			</tr>
+		<% end %>
+		<%= link_to("トップページ", root_path) %>
+	</table>
 </div>
 
