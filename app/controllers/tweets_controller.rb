@@ -1,4 +1,4 @@
-uclass TweetsController < ApplicationController
+class TweetsController < ApplicationController
   before_action :set_tweet, only: [:edit, :update, :destroy]
 
   def toppage
