@@ -25,15 +25,15 @@ class TweetsController < ApplicationController
   	end
   end
 
-  	def edit
-  		@tweet = Tweet.find(params[:id])
-  	end
+  def edit
+  	@tweet = Tweet.find(params[:id])
+  end
 
-  	def update
-  		if @tweet.update(tweet_params)
-  			redirect_to tweets_path, notice: "編集しました。"
-  		end
+  def update
+  	if @tweet.update(tweet_params)
+  		redirect_to tweets_path, notice: "編集しました。"
   	end
+	end
 
 	def destroy
   	@tweet.destroy
