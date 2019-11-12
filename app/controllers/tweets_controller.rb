@@ -33,7 +33,7 @@ class TweetsController < ApplicationController
   	if @tweet.update(tweet_params)
   		redirect_to tweets_path, notice: "編集しました。"
   	end
-	end
+  	end
 
 	def destroy
   	@tweet.destroy
